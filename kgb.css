@@ -1,0 +1,67 @@
+:root {
+    box-sizing: border-box;
+  }
+  
+  html, body, * {
+    margin: 0;
+    padding: 0;
+  }
+  
+  #app {
+    height: 100vh;
+    text-align: center;
+  }
+  
+  .summary {
+    margin: 0 auto;
+    border: 3px solid gray;
+    flex-direction: column;
+    justify-content: center;
+    display: flex;
+    width: 400px;
+    height: 400px;
+    text-align: center;
+    background-image: url(https://i.pinimg.com/originals/3b/f2/f4/3bf2f45865bc4a63a663611ea357de4c.gif);
+    background-position: center;
+    background-size: 500px;
+  }
+  
+  .games {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .option {
+    width: 30%;
+    margin: 10px 15px;
+    padding: 25px; 
+    text-align: center;
+    font-size: 20px;
+    background-color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  }
+  
+  .option:hover {
+    cursor: pointer;
+    background-color: white;
+    transition: cubic-bezier(0.215, 0.610, 0.355, 1) ease-in-out;
+    transform: scale(115%);
+  }
+  
+  .pilih {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .atas {
+    font-family: 'Times New Roman', Times, serif;
+  }
+  
+  .score {
+    text-align: center;
+    font-size: 24px;
+    margin-top: 20px;
+    color: #333;
+    font-weight: bold;
+  }

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7975542226626048"
+     crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="kgb.css"/>
+    <title>Mini Game</title>
+</head>
+<body>
+    <div class="atas">
+        <h6>&copy; rizqianafiqri11@gmail.com</h6>
+        <a href="beranda.html">Kembali</a>
+    </div>
+    <div id="app">
+        <h1>KERTAS ,GUNTING ,BATU</h1>
+        <div class="summary">
+            <h1 class="title">HASIL PERTANDINGAN</h1>
+            <h1 id="inGame"></h1>
+            <h3 id="result"></h3>
+        </div>
+        <div id="score" class="score">Kamu: 0 - Lawan: 0</div>
+        <div class="games">
+            <div class="option" onClick="pickOption('KAMU🖐')">
+                <img src="https://thumbs.gfycat.com/HelplessValidBettong-size_restricted.gif" height="120">
+            </div>
+            <div class="option" onClick="pickOption('KAMU✌')">
+                <img src="https://thumbs.gfycat.com/FeistyUnknownJumpingbean-size_restricted.gif" height="100">
+            </div>
+            <div class="option" onClick="pickOption('KAMU✊')">
+                <img src="https://media.tenor.com/rtw76H7yl_UAAAAC/batuapimoji-mybatuapi.gif" height="100">
+            </div>
+        </div>
+    </div>
+    
+
+    <script>
+        class Start {
+            constructor() {
+                this.playerName = "Kamu";
+                this.botName = "Lawan";
+                this.playerOption = "";
+                this.botOption = "";
+                this.winner = "";
+                this.playerScore = 0;
+                this.botScore = 0;
+            }
+
+            botBrain() {
+                const option = ["🖐LAWAN", "✌LAWAN", "✊LAWAN"];
+                const bot = option[Math.floor(Math.random() * option.length)];
+                return bot;
+            }
+
+            winCalculation() {
+                if(this.botOption === "🖐LAWAN" && this.playerOption === "KAMU✌"){
+                    this.winner = this.playerName;
+                } else if(this.botOption === "🖐LAWAN" && this.playerOption === "KAMU✊"){
+                    this.winner = this.botName;
+                } else if(this.botOption === "✌LAWAN" && this.playerOption === "KAMU🖐"){
+                    this.winner = this.botName;
+                } else if(this.botOption === "✌LAWAN" && this.playerOption === "KAMU✊"){
+                    this.winner = this.playerName;
+                } else if(this.botOption === "✊LAWAN" && this.playerOption === "KAMU🖐"){
+                    this.winner = this.playerName;
+                } else if(this.botOption === "✊LAWAN" && this.playerOption === "KAMU✌"){
+                    this.winner = this.botName;
+                } else {
+                    this.winner = "SERI";
+                }
+            }
+
+            matchResult() {
+                if(this.winner !== "SERI") {
+                    return `${this.winner} MENANG!`;
+                } else {
+                    return `${this.winner}, GAK ADA YG MENANG😆`;
+                }
+            }
+
+            updateScores() {
+                if (this.winner === this.playerName) {
+                    this.playerScore++;
+                } else if (this.winner === this.botName) {
+                    this.botScore++;
+                }
+            }
+
+            getScore() {
+                return `${this.playerName}: ${this.playerScore} - ${this.botName}: ${this.botScore}`;
+            }
+        }
+
+        const start = new Start(); // Create a single instance of the Start class
+
+        function pickOption(params) {
+            start.playerOption = params;
+            start.botOption = start.botBrain();
+
+            const inGame = document.getElementById("inGame");
+            const result = document.getElementById("result");
+            const score = document.getElementById("score");
+
+            inGame.textContent = "...";
+            result.textContent = "...";
+
+            setTimeout(() => {
+                start.winCalculation();
+
+                inGame.textContent = `${start.playerOption} VS ${start.botOption}`;
+                result.textContent = start.matchResult();
+                start.updateScores();
+                score.textContent = start.getScore();
+
+                // Update the displayed score
+                const displayedScore = document.getElementById("score");
+                displayedScore.textContent = `${start.playerName}: ${start.playerScore} - ${start.botName}: ${start.botScore}`;
+            }, 1500);
+        }
+    </script>
+</body>
+</html>
